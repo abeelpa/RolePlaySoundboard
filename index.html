@@ -90,23 +90,10 @@
     padding: 0 12px 24px;
   }
 
-  .section {
-    margin-bottom: 18px;
-  }
-
-  .section h2 {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-dim);
-    margin: 0 6px 8px;
-    font-weight: 600;
-  }
-
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
   }
 
   button.pad {
@@ -115,32 +102,33 @@
     border: 1px solid var(--panel-border);
     border-radius: 14px;
     color: var(--text);
-    padding: 14px 8px;
+    padding: 10px 4px;
     min-height: 84px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    font-size: 0.85rem;
+    font-size: 0.72rem;
     font-weight: 600;
+    line-height: 1.15;
     cursor: pointer;
     transition: transform 0.08s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     overflow: hidden;
   }
 
   button.pad .icon {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     line-height: 1;
   }
 
   button.pad .loop-tag {
     position: absolute;
-    top: 6px;
-    right: 8px;
-    font-size: 0.6rem;
+    top: 5px;
+    right: 6px;
+    font-size: 0.52rem;
     color: var(--text-dim);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
   }
 
   button.pad:active {
@@ -186,70 +174,49 @@
 </div>
 
 <main>
+  <div class="grid">
+    <button class="pad" data-src="sounds/rain.mp3" data-loop="true">
+      <span class="loop-tag">LOOP</span>
+      <span class="icon">🌧️</span>Rain
+    </button>
+    <button class="pad" data-src="sounds/thunder.mp3" data-loop="false">
+      <span class="icon">⚡</span>Thunder
+    </button>
+    <button class="pad" data-src="sounds/wind.mp3" data-loop="true">
+      <span class="loop-tag">LOOP</span>
+      <span class="icon">🌬️</span>Wind
+    </button>
+    <button class="pad" data-src="sounds/bellchime.mp3" data-loop="false">
+      <span class="icon">🔔</span>Night Bell
+    </button>
 
-  <div class="section">
-    <h2>Weather &amp; Ambience</h2>
-    <div class="grid">
-      <button class="pad" data-src="sounds/rain.mp3" data-loop="true">
-        <span class="loop-tag">LOOP</span>
-        <span class="icon">🌧️</span>Rain
-      </button>
-      <button class="pad" data-src="sounds/thunder.mp3" data-loop="false">
-        <span class="icon">⚡</span>Thunder
-      </button>
-      <button class="pad" data-src="sounds/wind.mp3" data-loop="true">
-        <span class="loop-tag">LOOP</span>
-        <span class="icon">🌬️</span>Wind
-      </button>
-    </div>
+    <button class="pad" data-src="sounds/rooster.mp3" data-loop="false">
+      <span class="icon">🐓</span>Rooster
+    </button>
+    <button class="pad" data-src="sounds/churchbell.mp3" data-loop="false">
+      <span class="icon">🛎️</span>Church Bell
+    </button>
+    <button class="pad" data-src="sounds/crowd.mp3" data-loop="true">
+      <span class="loop-tag">LOOP</span>
+      <span class="icon">🗣️</span>Town Murmur
+    </button>
+    <button class="pad" data-src="sounds/guillotine.mp3" data-loop="false">
+      <span class="icon">🔪</span>Guillotine
+    </button>
+
+    <button class="pad" data-src="sounds/gavel.mp3" data-loop="false">
+      <span class="icon">🔨</span>Gavel
+    </button>
+    <button class="pad" data-src="sounds/sting.mp3" data-loop="false">
+      <span class="icon">🎻</span>Dramatic Sting
+    </button>
+    <button class="pad" data-src="sounds/scream.mp3" data-loop="false">
+      <span class="icon">😱</span>Scream
+    </button>
+    <button class="pad" data-src="sounds/applause.mp3" data-loop="false">
+      <span class="icon">👏</span>Cheer
+    </button>
   </div>
-
-  <div class="section">
-    <h2>Day / Night Cycle</h2>
-    <div class="grid">
-      <button class="pad" data-src="sounds/bellchime.mp3" data-loop="false">
-        <span class="icon">🔔</span>Night Bell
-      </button>
-      <button class="pad" data-src="sounds/rooster.mp3" data-loop="false">
-        <span class="icon">🐓</span>Rooster
-      </button>
-      <button class="pad" data-src="sounds/churchbell.mp3" data-loop="false">
-        <span class="icon">🛎️</span>Church Bell
-      </button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Town Square</h2>
-    <div class="grid">
-      <button class="pad" data-src="sounds/crowd.mp3" data-loop="true">
-        <span class="loop-tag">LOOP</span>
-        <span class="icon">🗣️</span>Town Murmur
-      </button>
-      <button class="pad" data-src="sounds/guillotine.mp3" data-loop="false">
-        <span class="icon">🔪</span>Guillotine
-      </button>
-      <button class="pad" data-src="sounds/gavel.mp3" data-loop="false">
-        <span class="icon">🔨</span>Gavel
-      </button>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Drama</h2>
-    <div class="grid">
-      <button class="pad" data-src="sounds/sting.mp3" data-loop="false">
-        <span class="icon">🎻</span>Dramatic Sting
-      </button>
-      <button class="pad" data-src="sounds/scream.mp3" data-loop="false">
-        <span class="icon">😱</span>Scream
-      </button>
-      <button class="pad" data-src="sounds/applause.mp3" data-loop="false">
-        <span class="icon">👏</span>Cheer
-      </button>
-    </div>
-  </div>
-
 </main>
 
 <footer>
