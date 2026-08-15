@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Clocktower Soundboard</title>
+<style>
+  :root {
+    --bg: #14121a;
+    --panel: #1e1b26;
+    --panel-border: #332e42;
+    --accent: #8b5cf6;
+    --accent-glow: #a78bfa;
+    --text: #ece9f2;
+    --text-dim: #9490a3;
+    --danger: #e05265;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100%;
+    overscroll-behavior: none;
+  }
+
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  header {
+    padding: 14px 16px 8px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+  }
+
+  header p {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 16px 14px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .toolbar label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  .toolbar input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent);
+  }
+
+  #stopAll {
+    flex: none;
+    background: var(--danger);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 9px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  #stopAll:active { opacity: 0.75; }
+
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 12px 24px;
+  }
+
+  .section {
+    margin-bottom: 18px;
+  }
+
+  .section h2 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin: 0 6px 8px;
+    font-weight: 600;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  button.pad {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    color: var(--text);
+    padding: 14px 8px;
+    min-height: 84px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.08s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    overflow: hidden;
+  }
+
+  button.pad .icon {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  button.pad .loop-tag {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  button.pad:active {
+    transform: scale(0.96);
+  }
+
+  button.pad.playing {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 18px -2px var(--accent-glow);
+    color: #fff;
+  }
+
+  button.pad.playing.oneshot {
+    animation: flash 0.5s ease;
+  }
+
+  @keyframes flash {
+    0% { box-shadow: 0 0 0 1px var(--accent-glow), 0 0 26px 4px var(--accent-glow); }
+    100% { box-shadow: 0 0 0 1px var(--panel-border), 0 0 0 0 transparent; }
+  }
+
+  footer {
+    text-align: center;
+    padding: 6px 16px 20px;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+  }
+
+  footer a { color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🕰️ Clocktower Soundboard</h1>
+  <p>Trouble Brewing narration cues</p>
+</header>
+
+<div class="toolbar">
+  <label for="volume">🔊</label>
+  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.85">
+  <button id="stopAll">Stop All</button>
+</div>
+
+<main>
+
+  <div class="section">
+    <h2>Weather &amp; Ambience</h2>
+    <div class="grid">
+      <button class="pad" data-src="sounds/rain.mp3" data-loop="true">
+        <span class="loop-tag">LOOP</span>
+        <span class="icon">🌧️</span>Rain
+      </button>
+      <button class="pad" data-src="sounds/thunder.mp3" data-loop="false">
+        <span class="icon">⚡</span>Thunder
+      </button>
+      <button class="pad" data-src="sounds/wind.mp3" data-loop="true">
+        <span class="loop-tag">LOOP</span>
+        <span class="icon">🌬️</span>Wind
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Day / Night Cycle</h2>
+    <div class="grid">
+      <button class="pad" data-src="sounds/bellchime.mp3" data-loop="false">
+        <span class="icon">🔔</span>Night Bell
+      </button>
+      <button class="pad" data-src="sounds/rooster.mp3" data-loop="false">
+        <span class="icon">🐓</span>Rooster
+      </button>
+      <button class="pad" data-src="sounds/churchbell.mp3" data-loop="false">
+        <span class="icon">🛎️</span>Church Bell
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Town Square</h2>
+    <div class="grid">
+      <button class="pad" data-src="sounds/crowd.mp3" data-loop="true">
+        <span class="loop-tag">LOOP</span>
+        <span class="icon">🗣️</span>Town Murmur
+      </button>
+      <button class="pad" data-src="sounds/guillotine.mp3" data-loop="false">
+        <span class="icon">🔪</span>Guillotine
+      </button>
+      <button class="pad" data-src="sounds/gavel.mp3" data-loop="false">
+        <span class="icon">🔨</span>Gavel
+      </button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Drama</h2>
+    <div class="grid">
+      <button class="pad" data-src="sounds/sting.mp3" data-loop="false">
+        <span class="icon">🎻</span>Dramatic Sting
+      </button>
+      <button class="pad" data-src="sounds/scream.mp3" data-loop="false">
+        <span class="icon">😱</span>Scream
+      </button>
+      <button class="pad" data-src="sounds/applause.mp3" data-loop="false">
+        <span class="icon">👏</span>Cheer
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Sound effects: Freesound.org contributors (CC0 / CC-BY). Tap a LOOP pad again to stop it.
+</footer>
+
+<script>
+  const volumeSlider = document.getElementById('volume');
+  const stopAllBtn = document.getElementById('stopAll');
+  const pads = Array.from(document.querySelectorAll('button.pad'));
+
+  const players = pads.map(pad => {
+    const audio = new Audio(pad.dataset.src);
+    audio.preload = 'auto';
+    audio.loop = pad.dataset.loop === 'true';
+    audio.volume = parseFloat(volumeSlider.value);
+
+    audio.addEventListener('ended', () => {
+      if (!audio.loop) pad.classList.remove('playing');
+    });
+
+    return { pad, audio, loop: audio.loop };
+  });
+
+  volumeSlider.addEventListener('input', () => {
+    const v = parseFloat(volumeSlider.value);
+    players.forEach(p => { p.audio.volume = v; });
+  });
+
+  players.forEach(({ pad, audio, loop }) => {
+    pad.addEventListener('click', () => {
+      if (loop) {
+        if (!audio.paused) {
+          audio.pause();
+          audio.currentTime = 0;
+          pad.classList.remove('playing');
+        } else {
+          audio.currentTime = 0;
+          audio.play();
+          pad.classList.add('playing');
+        }
+      } else {
+        audio.currentTime = 0;
+        audio.play();
+        pad.classList.remove('playing');
+        void pad.offsetWidth;
+        pad.classList.add('playing', 'oneshot');
+        setTimeout(() => pad.classList.remove('playing', 'oneshot'), 500);
+      }
+    });
+  });
+
+  stopAllBtn.addEventListener('click', () => {
+    players.forEach(({ pad, audio }) => {
+      audio.pause();
+      audio.currentTime = 0;
+      pad.classList.remove('playing', 'oneshot');
+    });
+  });
+</script>
+
+</body>
+</html>
